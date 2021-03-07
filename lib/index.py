@@ -22,7 +22,7 @@ class IndexProtocol(Protocol):
 
 
 def create_empty_index() -> IndexData:
-    """ Фабрика со структурой данный индекса """
+    """ Фабрика со структурой данных индекса """
     default_dict_with_set = partial(defaultdict, set)
     return defaultdict(default_dict_with_set)
 

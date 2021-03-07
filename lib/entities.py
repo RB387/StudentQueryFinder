@@ -28,10 +28,10 @@ class StudentGrade(DataProtocol):
     def __str__(self):
         """ Строчное представление сущности """
         return (
-            f"Фамилия: {self.last_name}\n"
-            f"Предмет: {self.subject}\n"
-            f"Семестр: {self.semester}\n"
-            f"Оценка: {self.grade}\n"
+            f"Last name: {self.last_name}\n"
+            f"Subject: {self.subject}\n"
+            f"Semester: {self.semester}\n"
+            f"Grade: {self.grade}\n"
         )
 
     @classmethod

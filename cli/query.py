@@ -10,10 +10,10 @@ EXIT_VALUE = "1"
 class QueryInput:
     def input(self) -> List[Query]:
         while True:
-            print("Введите запрос в формате: поле1 значение [логический оператор] поле2 значение")
-            print("Допустимые логические операторы: and, or")
-            print("Пример запроса: subject Информатика and grade 4")
-            print(f"Введите {EXIT_VALUE} для выхода")
+            print("Enter query in format: field1 value [logical operator] field2 value")
+            print("Available logical operators: and, or")
+            print("Query example: subject Информатика and grade 4")
+            print(f"Enter {EXIT_VALUE} for exit")
             print(">> ", end="")
 
             user_input = input()
@@ -30,7 +30,7 @@ class QueryInput:
         queries = []
 
         if len(str_query_parts) < 3:
-            print("Некорректный запрос")
+            print("Incorrect query")
             return self.input()
 
         try:
@@ -38,12 +38,12 @@ class QueryInput:
                 try:
                     operator = LogicalOperator(operator)
                 except ValueError:
-                    print(f"Некорректный логический оператор: {operator}")
+                    print(f"Incorrect logical operator: {operator}")
                     return self.input()
 
                 queries.append(Query(field_name=field_name, value=value, operator=operator))
         except ValueError:
-            print("Некорректный запрос")
+            print("Incorrect query")
             return self.input()
 
         return queries

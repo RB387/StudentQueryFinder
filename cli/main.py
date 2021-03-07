@@ -17,42 +17,46 @@ class MainActivity:
     _running: bool = field(default=True, init=False)
 
     def start(self):
+        self._running = True
+
         selector = {
-            "1": self.upload,
-            "2": self.find_records,
-            "3": self.exit,
+            "1": self._upload,
+            "2": self._find_records,
+            "3": self._exit,
         }
 
         while self._running:
-            print("Выберите действие:")
-            print("1. Загрузить данные из файла")
-            print("2. Найти записи")
-            print("3. Выход")
+            print("Choose action:")
+            print("1. Upload data from file")
+            print("2. Find records")
+            print("3. Exit")
             print(">> ", end="")
 
             user_choice = selector.get(input())
 
             if user_choice is None:
-                print("Такого варианта ответа нет\n")
+                print("No such option\n")
             else:
                 user_choice()
 
-    def upload(self):
-        print("Начинаю загрузку")
-        self.uploader.upload(self.data_access)
-        print("Загрузка завершена")
+    def _upload(self):
+        print("Start uploading")
 
-    def find_records(self):
+        self.uploader.upload(self.data_access)
+
+        print("Finished uploading")
+
+    def _find_records(self):
         queries = self.query_input.input()
 
         if not queries:
             return
 
         result = self.data_access.find(queries)
-        print(f"Найдено: {len(result)}\n")
+        print(f"Found: {len(result)}\n")
 
         for entity in result:
             print(entity)
 
-    def exit(self):
+    def _exit(self):
         self._running = False
